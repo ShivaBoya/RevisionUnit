@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "React Conference 2025",
+      "date": "2025-09-15",
+      "location": "Bangalore",
+      "category": "Tech",
+      "description": "A full-day conference on React ecosystem.",
+      "bookmarked": true
+    },
+    {
+      "id": "2",
+      "title": "Music Festival",
+      "date": "2025-10-01",
+      "location": "Mumbai",
+      "category": "Music",
+      "description": "A weekend filled with live music and performances.",
+      "bookmarked": false
+    }
+  ]
+}
