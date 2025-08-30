@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CategoryTabs from "./CategoryTabs";
 
-const API_KEY = "85e0b642b5faf1b860245ebff47187fa"; // Replace with your TMDB API key
+const API_KEY = ""; 
 const BASE_URL = "https://api.themoviedb.org/3/movie";
 
 export default function MoviesDashboard() {
