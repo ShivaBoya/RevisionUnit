@@ -4,12 +4,10 @@ import { FaSearch } from "react-icons/fa";
 export default function SearchBar({ search, setSearch }) {
   return (
     <div className="relative w-full max-w-xl mx-auto my-4">
-      {/* Search Icon */}
       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <FaSearch className="text-gray-400" />
       </div>
 
-      {/* Input */}
       <input
         type="text"
         placeholder="Search for movies..."

@@ -7,7 +7,6 @@ export default function Filters({ filters, setFilters }) {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center my-4">
-      {/* Year Filter */}
       <div className="flex flex-col">
         <label className="text-gray-300 text-sm mb-1">Year</label>
         <input
@@ -20,7 +19,6 @@ export default function Filters({ filters, setFilters }) {
         />
       </div>
 
-      {/* Rating Filter */}
       <div className="flex flex-col">
         <label className="text-gray-300 text-sm mb-1">Min Rating</label>
         <input
@@ -36,7 +34,6 @@ export default function Filters({ filters, setFilters }) {
         />
       </div>
 
-      {/* Language Filter */}
       <div className="flex flex-col">
         <label className="text-gray-300 text-sm mb-1">Language</label>
         <select
