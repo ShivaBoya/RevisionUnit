@@ -1,0 +1,35 @@
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem;
+  font-family: Arial, sans-serif;
+}
+
+.stars {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.rating-text {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.clear-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #f44336;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.clear-btn:hover {
+  background: #d32f2f;
+}
