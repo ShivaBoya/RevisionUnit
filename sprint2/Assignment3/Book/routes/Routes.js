@@ -14,7 +14,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/get", async (req, res) => {
   try {
     const { author, available, page = 1, limit = 5 } = req.query;
     const filter = {};
