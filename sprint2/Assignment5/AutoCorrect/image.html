@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autocorrect Input Box</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .suggestions {
+      border: 1px solid #ccc;
+      max-height: 120px;
+      overflow-y: auto;
+      margin-top: 5px;
+      padding: 5px;
+      background: #fafafa;
+    }
+    .suggestions div {
+      padding: 5px;
+      cursor: pointer;
+    }
+    .suggestions div:hover {
+      background: #e0e0e0;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h2>Autocorrect Input Box with Suggestions</h2>
+  <textarea id="textInput" placeholder="Type here..."></textarea>
+  <div id="suggestions" class="suggestions"></div>
+  
+  <!-- <div class="buttons">
+    <button id="checkBtn">Check Spelling</button>
+    <button id="resetBtn">Reset</button>
+  </div> -->
+
+<script>
+let words = [
+    'hello', 'world', 'react', 'javascript', 'computer', 'programming',
+    'development', 'application', 'function', 'variable', 'array', 'object',
+    'string', 'number', 'boolean', 'undefined', 'null', 'console', 'document',
+    'window', 'event', 'click', 'button', 'input', 'form', 'submit', 'render',
+    'component', 'state', 'props', 'hook', 'effect', 'callback', 'promise',
+    'async', 'await', 'fetch', 'api', 'data', 'response', 'request', 'error',
+    'success', 'loading', 'complete', 'start', 'stop', 'create', 'update',
+    'delete', 'read', 'write', 'file', 'folder', 'directory', 'path', 'url',
+    'link', 'image', 'video', 'audio', 'text', 'content', 'title', 'description',
+    'name', 'email', 'password', 'user', 'admin', 'login', 'logout', 'register',
+    'profile', 'settings', 'preferences', 'configuration', 'options', 'menu',
+    'navigation', 'header', 'footer', 'sidebar', 'main', 'section', 'article',
+    'paragraph', 'sentence', 'word', 'letter', 'character', 'space', 'tab',
+    'line', 'break', 'new', 'old', 'first', 'last', 'next', 'previous',
+    'before', 'after', 'during', 'while', 'when', 'where', 'what', 'why',
+    'how', 'who', 'which', 'that', 'this', 'these', 'those', 'them', 'they',
+    'their', 'there', 'here', 'everywhere', 'somewhere', 'nowhere', 'anywhere'
+];
+
+function levenshtein(a, b) {
+  const dp = Array(a.length+1).fill(null).map(()=>Array(b.length+1).fill(0));
+  for(let i=0; i<=a.length; i++) dp[i][0] = i;
+  for(let j=0; j<=b.length; j++) dp[0][j] = j;
+  for(let i=1; i<=a.length; i++){
+    for(let j=1; j<=b.length; j++){
+      if(a[i-1] === b[j-1]) dp[i][j] = dp[i-1][j-1];
+      else dp[i][j] = 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return dp[a.length][b.length];
+}
+
+function autocorrect(word) {
+  if(words.includes(word)) return word; 
+  let closest = word, minDist = Infinity;
+  for(let w of words){
+    let d = levenshtein(word, w);
+    if(d < minDist){
+      minDist = d;
+      closest = w;
+    }
+  }
+  return closest;
+}
+
+const textarea = document.getElementById('textInput');
+const suggestionsDiv = document.getElementById('suggestions');
+
+textarea.addEventListener('input', () => {
+  let text = textarea.value;
+  let parts = text.split(/\s+/);
+  let currentWord = parts[parts.length-1].toLowerCase();
+  
+  suggestionsDiv.innerHTML = "";
+  if(currentWord){
+    let matches = words.filter(w=>w.startsWith(currentWord)).slice(0,10);
+    matches.forEach(m=>{
+      let div = document.createElement('div');
+      div.textContent = m;
+      div.onclick = () => {
+        parts[parts.length-1] = m;
+        textarea.value = parts.join(" ") + " ";
+        suggestionsDiv.innerHTML = "";
+      };
+      suggestionsDiv.appendChild(div);
+    });
+  }
+});
+
+textarea.addEventListener('keydown', (e)=>{
+  if(e.key === " "){
+    let text = textarea.value.trimEnd();
+    let parts = text.split(/\s+/);
+    let lastWord = parts[parts.length-1];
+    let corrected = autocorrect(lastWord.toLowerCase());
+    parts[parts.length-1] = corrected;
+    textarea.value = parts.join(" ") + " ";
+  }
+});
+
+checkBtn.addEventListener('click', ()=>{
+  let text = textarea.value.trim();
+  let parts = text.split(/\s+/);
+  let correctedParts = parts.map(w => autocorrect(w.toLowerCase()));
+  textarea.value = correctedParts.join(" ");
+});
+
+resetBtn.addEventListener('click', ()=>{
+  textarea.value = "";
+  suggestionsDiv.innerHTML = "";
+});
+</script>
+
+</body>
+</html>
