@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dictionary Explorer</title>
+  <link rel="stylesheet" href="Dictinary.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <input type="text" id="searchInput" placeholder="Search for a word...">
+      <div class="toggle">
+        <span>Dark / Light Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="modeToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="results">
+        <h2>Search Results</h2>
+        <div id="wordDetails"></div>
+      </section>
+
+      <aside class="suggestions">
+        <h2>Suggestions</h2>
+        <ul id="suggestionList"></ul>
+      </aside>
+    </main>
+
+    <footer>
+      <h2>Search History</h2>
+      <div id="history"></div>
+    </footer>
+  </div>
+
+  <script src="Dictonary.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #ccc;
+  transition: 0.4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background: #333;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+main {
+  display: flex;
+  gap: 20px;
+}
+
+.results, .suggestions {
+  flex: 1;
+}
+
+#wordDetails {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.suggestions ul {
+  list-style: none;
+}
+
+.suggestions li {
+  cursor: pointer;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions li:hover {
+  background: #f0f0f0;
+}
+
+#history span {
+  display: inline-block;
+  background: #eee;
+  padding: 6px 10px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#history span:hover {
+  background: #ddd;
+}
+
+body.dark {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+body.dark #wordDetails {
+  border-color: #444;
+}
